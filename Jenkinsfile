@@ -104,7 +104,7 @@ pipeline {
         // Email notification
         emailext body: '''${SCRIPT, template="groovy-html.template"}''', 
                  subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Failed", 
-                 mimeType: 'text/html', to: "varshithag@devtools.in"
+                 mimeType: 'text/html', to: "varshithag303@gmail.com"
 
         // Create GitHub Issue
         script {
@@ -139,7 +139,7 @@ pipeline {
     success {
         emailext body: '''${SCRIPT, template="groovy-html.template"}''', 
                  subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
-                 mimeType: 'text/html', to: "varshithag@devtools.in"
+                 mimeType: 'text/html', to: "varshithag303@gmail.com"
     }
 }
 }
