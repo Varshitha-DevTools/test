@@ -143,12 +143,13 @@ pipeline {
                 """
             }
         }
-    }
+    
     success {
     emailext (
         body: "Job: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}\nStatus: SUCCESS",
         subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Successful",
         to: "varshithag@devtools.in"
     )
+}
 }
 }
