@@ -101,10 +101,18 @@ pipeline {
 
     post {
     failure {
-        // Email notification
-        emailext body: '''${SCRIPT, template="groovy-html.template"}''', 
-                 subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Failed", 
-                 mimeType: 'text/html', to: "varshithag303@gmail.com"
+    emailext (
+        body: """
+            <h3>Build Failed</h3>
+            <p>Job: ${env.JOB_NAME}</p>
+            <p>Build Number: ${env.BUILD_NUMBER}</p>
+            <p>Status: FAILURE</p>
+        """,
+        subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Failed",
+        mimeType: 'text/html',
+        to: "varshithag@devtools.in"
+    )
+}
 
         // Create GitHub Issue
         script {
@@ -137,9 +145,10 @@ pipeline {
         }
     }
     success {
-        emailext body: '''${SCRIPT, template="groovy-html.template"}''', 
-                 subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
-                 mimeType: 'text/html', to: "varshithag303@gmail.com"
-    }
+    emailext (
+        body: "Job: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}\nStatus: SUCCESS",
+        subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Successful",
+        to: "varshithag@devtools.in"
+    )
 }
 }
