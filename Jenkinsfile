@@ -112,7 +112,7 @@ pipeline {
         mimeType: 'text/html',
         to: "varshithag@devtools.in"
     )
-}
+
 
         // Create GitHub Issue
         script {
@@ -142,7 +142,8 @@ pipeline {
                      https://api.github.com/repos/${repoOwner}/${repoName}/issues
                 """
             }
-        }
+        }    
+    }
     
     success {
     emailext (
